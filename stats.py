@@ -1,11 +1,19 @@
 import pandas as pd
 
 CITY_DATA = {
-    "chicago": "chicago.csv",
-    "new york city": "new_york_city.csv",
-    "washington": "washington.csv",
+    "Chicago": "chicago.csv",
+    "New York City": "new_york_city.csv",
+    "Washington D.C.": "washington.csv",
 }
 
+MONTHS = {
+    "January": True,
+    "February": True,
+    "March": True,
+    "April": True,
+    "May": True,
+    "June": True,
+}
 
 def load_data(selections):
     """
