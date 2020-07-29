@@ -4,5 +4,6 @@ from stats import CITY_DATA
 
 urlpatterns = [
     path('', views.index, name='dashboard-home'),
-    path('update/', views.update_dashboard, name='dashboard-update'),
+    path('update-city/', views.update_city, name='dashboard-update-city'),
+    path('update-month/', views.update_month, name='dashboard-update-month'),
 ]

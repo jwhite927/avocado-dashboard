@@ -1,4 +1,5 @@
 {% load static %}
+{% load dash_extras %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +17,31 @@
 <body>
 <main role="main" class="container">
 
-        <form action="{% url 'dashboard-update' %}"method="post">
+        <form action="{% url 'dashboard-update-city' %}" method="post">
         {% csrf_token %}
         <div class="btn-group">
             {% for city in cities %}
-                <button name="city" value="{{ city }}" class="btn btn-primary">{{ city }}</button>
+                {% if city == city_selected %}
                     {{ city|button:"city primary" }}
+                {% else %}
                     {{ city|button:"city dark" }}
+                {% endif %}
             {% endfor %}
         </div>
+        </form>
+
+        <form action="{% url 'dashboard-update-month' %}" method="post">
+        {% csrf_token %}
+        <div class="btn-group">
+            {% for month, selected in months.items %}
+                {% if selected %}
                     {{ month|button:"month primary" }}
+                {% else %}
                     {{ month|button:"month dark" }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        </form>
         {% block content %}{% endblock content %}
 </main>
 
