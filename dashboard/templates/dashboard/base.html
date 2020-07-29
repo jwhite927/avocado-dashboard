@@ -21,8 +21,12 @@
         <div class="btn-group">
             {% for city in cities %}
                 <button name="city" value="{{ city }}" class="btn btn-primary">{{ city }}</button>
+                    {{ city|button:"city primary" }}
+                    {{ city|button:"city dark" }}
             {% endfor %}
         </div>
+                    {{ month|button:"month primary" }}
+                    {{ month|button:"month dark" }}
         {% block content %}{% endblock content %}
 </main>
 
