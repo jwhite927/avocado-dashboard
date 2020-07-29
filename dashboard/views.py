@@ -9,8 +9,14 @@ from stats import (
     CITY_DATA,
 )
 
+CONTEXT = {
+    'cities': CITY_DATA.keys(),
+}
+
 def index(request):
-	context = {
-		'cities': [city.title() for city in CITY_DATA.keys()],
-	}
-	return render(request, 'dashboard/home.html', context)
+    return render(request, 'dashboard/base.html', CONTEXT)
+
+def update_dashboard(request):
+    if request.method == "POST":
+        CONTEXT['city_selected'] = request.POST.get('city').title()
+    return render(request, 'dashboard/home.html', CONTEXT)

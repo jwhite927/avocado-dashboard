@@ -16,14 +16,14 @@
 <body>
 <main role="main" class="container">
 
-     <div class="btn-group">
-            {% if cities %}
-                {% for city in cities %}
-                     <button type="button" class="btn btn-primary">{{ city }}</button>
-                {% endfor %}
-            {% endif %}
-    </div> 
-
+        <form action="{% url 'dashboard-update' %}"method="post">
+        {% csrf_token %}
+        <div class="btn-group">
+            {% for city in cities %}
+                <button name="city" value="{{ city }}" class="btn btn-primary">{{ city }}</button>
+            {% endfor %}
+        </div>
+        {% block content %}{% endblock content %}
 </main>
 
     <!-- Optional JavaScript -->
