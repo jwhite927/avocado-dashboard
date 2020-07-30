@@ -103,7 +103,7 @@ def trim_pd_series(series):
 
 
 def get_user_stats(data_frame):
-    """Displays statistics on bikeshare users."""
+    """Displays statistics on avocado consumption."""
 
     results = []
 
