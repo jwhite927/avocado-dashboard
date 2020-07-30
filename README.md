@@ -1,3 +1,5 @@
 This project is in **WIP**
 
-Bikeshare-dashboard will be a visualization of bikeshare data using a Django web dashboard.
+Avocado-dashboard will be a visualization of avocado consumption data using a Django web dashboard.
+
+[Data Source](https://www.kaggle.com/neuromusic/avocado-prices/data)
