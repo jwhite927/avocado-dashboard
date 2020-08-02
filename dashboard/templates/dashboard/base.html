@@ -1,5 +1,4 @@
 {% load static %}
-{% load dash_extras %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,42 +11,16 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'dashboard/main.css' %}"></link>
 
-    <title>Bikeshare Dashboard</title>
+    <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-<main role="main" class="container">
 
-        <form action="{% url 'dashboard-update-city' %}" method="post">
-        {% csrf_token %}
-        <div class="btn-group">
-            {% for city in cities %}
-                {% if city == city_selected %}
-                    {{ city|button:"city primary" }}
-                {% else %}
-                    {{ city|button:"city dark" }}
-                {% endif %}
-            {% endfor %}
-        </div>
-        </form>
-
-        <form action="{% url 'dashboard-update-month' %}" method="post">
-        {% csrf_token %}
-        <div class="btn-group">
-            {% for month, selected in months.items %}
-                {% if selected %}
-                    {{ month|button:"month primary" }}
-                {% else %}
-                    {{ month|button:"month dark" }}
-                {% endif %}
-            {% endfor %}
-        </div>
-        </form>
         {% block content %}{% endblock content %}
-</main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="{% static 'js/dash.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>

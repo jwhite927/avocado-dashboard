@@ -1,4 +1,40 @@
 {% extends "dashboard/base.html" %}
+
+{% block title %}
+    Avocado Dashboard
+{% endblock title %}
+
 {% block content %}
-    <h1>{{ city_selected }} selected!</h1>
+
+
+<main role="main" class="container">
+
+    <form id="selectCityForm" method="post" data-url="{% url 'dashboard-update-city' %}">
+    {% csrf_token %}
+    <div class="btn-group">
+        {% for city in cities %}
+            {% if city == city_selected %}
+                <button type="button" name="city" value="{{ city }}" id="{{ city }}Button" class="btn btn-primary">{{ city }}</button>
+            {% else %}
+                <button type="button" name="city" value="{{ city }}" id="{{ city }}Button" class="btn btn-dark">{{ city }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+<!--
+    <div class="btn-group">
+        {% for month, selected in months.items %}
+            {% if selected %}
+                <button name="month" value="{{ month }}" class="btn btn-primary">{{ month }}</button>
+            {% else %}
+                <button name="month" value="{{ month }}" class="btn btn-dark">{{ month }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </form>
+-->
+    <h1 id="citySelected">{{ city_selected }} selected!</h1>
+
+</main>
+
 {% endblock content %}
