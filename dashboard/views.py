@@ -14,17 +14,26 @@ from stats import (
 )
 
 CONTEXT = {
-    'cities': CITY_DATA.keys(),
-    'city_selected': 'Chicago',
+    'cities': {"chicago": {"pretty": "Chicago", "selected": True}, "newyork": {"pretty": "New York City", "selected": False}, "washington": {"pretty": "Washington D.C.", "selected": False} },
     'months': MONTHS,
 }
+
+def reset_cities(context):
+    for city, props in context['cities'].items():
+        props['selected'] = False
 
 class Dashboard(View):
     def get(self, request):
         return render(request, 'dashboard/home.html', CONTEXT)
 
     def post(self, request):
-        print(request.POST)
-        CONTEXT['city_selected'] = request.POST.get('city')
-        return JsonResponse({'city_selected': CONTEXT['city_selected']}, status=200)
-        # return JsonResponse({'city_selected': CONTEXT['city_selected']}, status=200)
+        global CONTEXT
+        reset_cities(CONTEXT)
+        info = {'city_selected': ''}
+        for key in request.POST.keys():
+            for city, props in CONTEXT['cities'].items():
+                if key == f'city-{city}':
+                    props['selected'] = True
+                    info['city_selected'] += city
+
+        return JsonResponse(info, status=200)

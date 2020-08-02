@@ -1,9 +1,7 @@
 $(document).ready(function(){
 
-    $("#ChicagoButton").click(function() {
+    $("[name|='city']").change(function() {
         var serializedData = $("#selectCityForm").serialize();
-        serializedData['city'] = "test"
-        console.log(serializedData);
         $.ajax({
             url: $("selectCityForm").data('url'),
             data: serializedData,

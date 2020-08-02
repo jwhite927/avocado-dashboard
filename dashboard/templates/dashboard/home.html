@@ -11,24 +11,18 @@
 
     <form id="selectCityForm" method="post" data-url="{% url 'dashboard-home' %}">
     {% csrf_token %}
-    <div class="btn-group">
-        {% for city in cities %}
-            {% if city == city_selected %}
-                <button type="button" name="city" value="{{ city }}" id="{{ city }}Button" class="btn btn-primary">{{ city }}</button>
-            {% else %}
-                <button type="button" name="city" value="{{ city }}" id="{{ city }}Button" class="btn btn-dark">{{ city }}</button>
-            {% endif %}
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        {% for city, props in cities.items %}
+            <label class="btn btn-primary active">
+                <input name="city-{{ city }}" type="checkbox" checked autocomplete="off">{{ props.pretty }}
+            </label>
         {% endfor %}
     </div>
 
 <!--
     <div class="btn-group">
         {% for month, selected in months.items %}
-            {% if selected %}
                 <button name="month" value="{{ month }}" class="btn btn-primary">{{ month }}</button>
-            {% else %}
-                <button name="month" value="{{ month }}" class="btn btn-dark">{{ month }}</button>
-            {% endif %}
         {% endfor %}
     </div>
 -->
