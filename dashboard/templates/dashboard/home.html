@@ -9,7 +9,7 @@
 
 <main role="main" class="container">
 
-    <form id="selectCityForm" method="post" data-url="{% url 'dashboard-update-city' %}">
+    <form id="selectCityForm" method="post" data-url="{% url 'dashboard-home' %}">
     {% csrf_token %}
     <div class="btn-group">
         {% for city in cities %}
@@ -31,9 +31,12 @@
             {% endif %}
         {% endfor %}
     </div>
-    </form>
 -->
-    <h1 id="citySelected">{{ city_selected }} selected!</h1>
+    </form>
+
+    <div id="citySelectedList">
+        <h1 id="citySelected">{{ city_selected }} selected!</h1>
+    </div>
 
 </main>
 

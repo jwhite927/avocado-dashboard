@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import View
 from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
 
@@ -18,25 +19,12 @@ CONTEXT = {
     'months': MONTHS,
 }
 
-def index(request):
-    return render(request, 'dashboard/home.html', CONTEXT)
-
-def update_city(request):
-    if request.method == "POST":
-        CONTEXT['city_selected'] = request.POST.get('city')
-    return render(request, 'dashboard/home.html', CONTEXT)
-
-def update_month(request):
-    if request.method == "POST":
-        month = request.POST.get('month')
-        CONTEXT['months'][month] = not CONTEXT['months'][month]
-    return render(request, 'dashboard/home.html', CONTEXT)
-
-
 class Dashboard(View):
     def get(self, request):
         return render(request, 'dashboard/home.html', CONTEXT)
 
     def post(self, request):
+        print(request.POST)
         CONTEXT['city_selected'] = request.POST.get('city')
-    return render(request, 'dashboard/home.html', CONTEXT)
+        return JsonResponse({'city_selected': CONTEXT['city_selected']}, status=200)
+        # return JsonResponse({'city_selected': CONTEXT['city_selected']}, status=200)

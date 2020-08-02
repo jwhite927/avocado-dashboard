@@ -1,9 +1,7 @@
 from django.urls import path
-from . import views
+from .views import Dashboard
 from stats import CITY_DATA
 
 urlpatterns = [
-    path('', views.index, name='dashboard-home'),
-    path('update-city/', views.update_city, name='dashboard-update-city'),
-    # path('update-month/', views.update_month, name='dashboard-update-month'),
+    path('', Dashboard.as_view(), name='dashboard-home'),
 ]
